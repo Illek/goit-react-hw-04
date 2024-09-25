@@ -1,11 +1,9 @@
 import s from "./ImageCard.module.css";
 
-const ImageCard = ({ urls, alt_description }) => {
+export default function ImageCard({ urls, slug }) {
   return (
-    <div className={s.image}>
-      <img src={urls.small} alt={alt_description} width="240px" />
+    <div>
+      <img className={s.image} src={urls.small} alt={slug} width="240" />
     </div>
   );
-};
-
-export default ImageCard;
+}

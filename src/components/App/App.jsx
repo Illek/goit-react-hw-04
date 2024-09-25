@@ -1,14 +1,14 @@
 // import s from "./App.module.css"///;
 import { useState } from "react";
-import { searchImages } from "../../api";
 import { useEffect } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import { Toaster, toast } from "react-hot-toast";
 import ImageGallery from "../ImageGallery/ImageGallery";
+import searchImages from "../../api";
 
 const App = () => {
   const [images, setImages] = useState([]);
-  const [isVisible, setIsVisible] = useState(false);
+  // const [isVisible, setIsVisible] = useState(false);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
@@ -19,7 +19,7 @@ const App = () => {
     setLoading(true);
     setError(null);
 
-    async function getImages() {
+    const getImages = async () => {
       try {
         const data = await searchImages(query, page);
         const { results, total_pages } = data;
@@ -29,13 +29,13 @@ const App = () => {
           toast.error("No images found. Try again.");
         }
         setImages(prevImages => [...prevImages, ...results]);
-        setIsVisible(page < total_pages);
+        // setIsVisible(page < total_pages);
       } catch (error) {
         setError(error);
       } finally {
         setLoading(false);
       }
-    }
+    };
 
     getImages();
   }, [page, query]);
@@ -48,10 +48,10 @@ const App = () => {
   };
 
   return (
-    <>
+    <div>
       <SearchBar onSubmit={searchRequest} />
       {images.length > 0 && <ImageGallery images={images} />}
-    </>
+    </div>
   );
 };
 

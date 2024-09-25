@@ -6,7 +6,7 @@ const ACCESS_KEY = "a7-65JkW6wYXRX_w16CLjwBrow6ShdrnoA933s6cxLE";
 axios.defaults.baseURL = "https://api.unsplash.com";
 axios.defaults.headers.common["Authorization"] = `Client-ID ${ACCESS_KEY}`;
 
-export const searchImages = async (query, page) => {
+const searchImages = async (query, page) => {
   const response = await axios.get("/search/photos", {
     params: {
       query,
@@ -17,3 +17,5 @@ export const searchImages = async (query, page) => {
   });
   return response.data, console.log("API: ", response.data);
 };
+
+export default searchImages;
