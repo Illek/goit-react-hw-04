@@ -15,6 +15,5 @@ export const searchImages = async (query, page) => {
       orientation: "squarish",
     },
   });
-  console.log(response);
-  return response.date;
+  return response.data, console.log("API: ", response.data);
 };
