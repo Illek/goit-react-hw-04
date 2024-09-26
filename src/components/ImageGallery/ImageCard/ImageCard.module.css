@@ -1,5 +1,8 @@
 .image {
+  display: block;
+  object-fit: cover;
   border-radius: 8px;
-  width: 380px;
-  height: 260px;
+  width: 20vw;
+  height: auto;
+  min-width: 50px;
 }

@@ -15,7 +15,7 @@ const searchImages = async (query, page) => {
       orientation: "squarish",
     },
   });
-  return response.data, console.log("API: ", response.data);
+  return response.data;
 };
 
 export default searchImages;

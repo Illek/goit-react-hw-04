@@ -1,4 +1,15 @@
-.listItem {
-  width: 125px;
-  height: 125px;
+.list {
+  width: calc((100% - 3 * 16px));
+  /* height: 100%; */
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .list {
+    width: calc((100% - 2 * 8px) / 3);
+    min-width: 275px;
+  }
 }
