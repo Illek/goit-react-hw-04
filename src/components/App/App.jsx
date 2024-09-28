@@ -7,6 +7,7 @@ import ImageGallery from "../ImageGallery/ImageGallery";
 import searchImages from "../../api";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import Loader from "../Loader/Loader";
+import ImageModal from "../ImageModal/ImageModal";
 
 const App = () => {
   const [images, setImages] = useState([]);
@@ -15,6 +16,31 @@ const App = () => {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalUrl, setModalUrl] = useState("");
+  const [modalAlt, setModalAlt] = useState("");
+
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+  };
+
+  const openModal = (alt, url) => {
+    setIsOpen(true);
+    setModalAlt(alt);
+    setModalUrl(url);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+    setModalAlt("");
+    setModalUrl("");
+  };
 
   const loadMore = () => {
     setPage(prevPage => prevPage + 1);
@@ -58,13 +84,22 @@ const App = () => {
   return (
     <div className={s.appContainer}>
       <SearchBar onSubmit={searchRequest} />
-      {images.length > 0 && <ImageGallery images={images} />}
+      {images.length > 0 && (
+        <ImageGallery images={images} openModal={openModal} />
+      )}
       {isVisible && images.length > 0 && !loading && (
         <LoadMoreBtn onClick={loadMore} disabled={loading}>
           {loading ? "Loading..." : "Load more"}
         </LoadMoreBtn>
       )}
       {loading && <Loader />}
+      <ImageModal
+        isOpen={modalIsOpen}
+        isClose={closeModal}
+        style={customStyles}
+        src={modalUrl}
+        alt={modalAlt}
+      />
     </div>
   );
 };
