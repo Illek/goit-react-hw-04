@@ -1,0 +1,11 @@
+.loadMore {
+  margin: 12px;
+  margin: 24 auto;
+}
+
+.buttonWrap {
+  width: 1280px;
+  display: flex;
+  justify-content: center;
+  color: #678471;
+}

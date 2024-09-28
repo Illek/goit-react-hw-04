@@ -1,9 +1,15 @@
-.list {
-  width: calc((100% - 3 * 16px));
-  /* height: 100%; */
+.galleryWrap {
+  max-width: 1280px;
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 16px;
+}
+
+.list {
+  width: 91%;
+  height: auto;
+  display: flex;
+  gap: 14px;
   flex-wrap: wrap;
 }
 

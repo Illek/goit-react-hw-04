@@ -13,6 +13,7 @@ const SearchBar = ({ onSubmit }) => {
     }
     onSubmit(query.trim());
     setQuery("");
+    // form.reset();
   };
 
   const handleChange = e => {
@@ -20,11 +21,11 @@ const SearchBar = ({ onSubmit }) => {
   };
 
   return (
-    <header>
+    <header className={s.header}>
       <div>
         <Toaster position="top-right" reverseOrder={false} />
       </div>
-      <form onSubmit={handleSubmit}>
+      <form className={s.searchForm} onSubmit={handleSubmit}>
         <input
           type="text"
           autoComplete="off"
@@ -35,7 +36,9 @@ const SearchBar = ({ onSubmit }) => {
           onChange={handleChange}
           name="searchInput"
         />
-        <button type="submit">Search</button>
+        <button className={s.submitSearchBtn} type="submit">
+          Search
+        </button>
       </form>
     </header>
   );
