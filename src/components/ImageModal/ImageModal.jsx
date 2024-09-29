@@ -18,8 +18,8 @@ Modal.setAppElement("#root");
 export default function ImageModal({ isOpen, onRequestClose, alt, src }) {
   return (
     <Modal
-      isOpenModal={isOpen}
-      isCloseModal={onRequestClose}
+      modalIsOpen={isOpen}
+      closeModal={onRequestClose}
       style={customStyles}
     >
       <img src={src} alt={alt} />

@@ -15,9 +15,9 @@ const App = () => {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalUrl, setModalUrl] = useState("");
   const [modalAlt, setModalAlt] = useState("");
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   const loadMore = () => {
     setPage(prevPage => prevPage + 1);
@@ -58,14 +58,14 @@ const App = () => {
     // console.log("searchRequest fn", values);
   };
 
-  const openModal = ({ url, alt }) => {
-    setModalIsOpen(true);
+  const openModal = (url, alt) => {
+    setIsOpen(true);
     setModalUrl(url);
     setModalAlt(alt);
     console.log("Modal Opened");
   };
   const closeModal = () => {
-    setModalIsOpen(false);
+    setIsOpen(false);
     setModalUrl("");
     setModalAlt("");
   };
