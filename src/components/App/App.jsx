@@ -15,7 +15,7 @@ const App = () => {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalUrl, setModalUrl] = useState("");
   const [modalAlt, setModalAlt] = useState("");
 
@@ -55,17 +55,17 @@ const App = () => {
     setIsVisible(false);
     setError(null);
     setImages([]);
-    console.log("searchRequest fn", values);
+    // console.log("searchRequest fn", values);
   };
 
   const openModal = ({ url, alt }) => {
-    console.log("Modal Opened");
-    setIsOpen(true);
+    setModalIsOpen(true);
     setModalUrl(url);
     setModalAlt(alt);
+    console.log("Modal Opened");
   };
   const closeModal = () => {
-    setIsOpen(false);
+    setModalIsOpen(false);
     setModalUrl("");
     setModalAlt("");
   };
@@ -83,8 +83,8 @@ const App = () => {
       )}
       {loading && <Loader />}
       <ImageModal
-        isOpen={isOpen}
-        isClose={closeModal}
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
         src={modalUrl}
         alt={modalAlt}
       />
