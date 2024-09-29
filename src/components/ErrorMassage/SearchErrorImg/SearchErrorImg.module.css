@@ -1,0 +1,11 @@
+.imageWrap {
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+.img {
+  box-shadow: 5px 6px 4.5px 1px rgba(0, 0, 0, 0.35);
+  border-radius: 12px;
+}

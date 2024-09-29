@@ -1,28 +1,20 @@
-// import s from "./ImageModal.module.css";
+import s from "./ImageModal.module.css";
 import Modal from "react-modal";
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-  overlay: { backgroundColor: "rgba(0,0,0, 0.7) " },
-};
 
 Modal.setAppElement("#root");
 
 export default function ImageModal({ isOpen, onRequestClose, alt, src }) {
+  const signal = isOpen;
   return (
-    <Modal
-      modalIsOpen={isOpen}
-      closeModal={onRequestClose}
-      style={customStyles}
-    >
-      <img src={src} alt={alt} />
-    </Modal>
+    <div>
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={onRequestClose}
+        className={s.cardWrap}
+        overlayClassName={s.overlay}
+      >
+        <img src={src} alt={alt} className={s.image} />
+      </Modal>
+    </div>
   );
 }

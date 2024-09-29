@@ -7,6 +7,7 @@ import searchImages from "../../api";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import Loader from "../Loader/Loader";
 import ImageModal from "../ImageModal/ImageModal";
+import ErrorMassage from "../ErrorMassage/ErrorMassage";
 
 const App = () => {
   const [images, setImages] = useState([]);
@@ -14,7 +15,7 @@ const App = () => {
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
   const [modalUrl, setModalUrl] = useState("");
   const [modalAlt, setModalAlt] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -32,15 +33,15 @@ const App = () => {
       try {
         const data = await searchImages(query, page);
         const { results, total_pages } = data;
-        console.log("getImages fn", data);
 
         if (page === 1 && results.length === 0) {
-          toast.error("No images found. Try again.");
+          // toast.error("No images found. Try again.");
+          setError(true);
         }
         setImages(prevImages => [...prevImages, ...results]);
         setIsVisible(page < total_pages);
       } catch (error) {
-        setError(error);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -55,14 +56,12 @@ const App = () => {
     setIsVisible(false);
     setError(null);
     setImages([]);
-    // console.log("searchRequest fn", values);
   };
 
   const openModal = (url, alt) => {
     setIsOpen(true);
     setModalUrl(url);
     setModalAlt(alt);
-    console.log("Modal Opened");
   };
   const closeModal = () => {
     setIsOpen(false);
@@ -80,6 +79,9 @@ const App = () => {
         <LoadMoreBtn onClick={loadMore} disabled={loading}>
           {loading ? "Loading..." : "Load more"}
         </LoadMoreBtn>
+      )}
+      {error && (
+        <ErrorMassage message={"Sorry, Leam cant't find what you need :("} />
       )}
       {loading && <Loader />}
       <ImageModal

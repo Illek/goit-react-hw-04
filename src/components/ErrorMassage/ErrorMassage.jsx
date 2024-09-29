@@ -1,7 +1,14 @@
-// import s from "./ErrorMassage.module.css";
+import s from "./ErrorMassage.module.css";
 
-const ErrorMassage = () => {
-  return <div>ErrorMassage</div>;
+import SearchErrorImg from "./SearchErrorImg/SearchErrorImg";
+
+const ErrorMassage = ({ message }) => {
+  return (
+    <div>
+      <SearchErrorImg />
+      <p className={s.text}>{message}</p>
+    </div>
+  );
 };
 
 export default ErrorMassage;
