@@ -1,6 +1,5 @@
 import s from "./App.module.css";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import { Toaster, toast } from "react-hot-toast";
 import ImageGallery from "../ImageGallery/ImageGallery";
@@ -16,31 +15,9 @@ const App = () => {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [modalUrl, setModalUrl] = useState("");
   const [modalAlt, setModalAlt] = useState("");
-
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-    },
-  };
-
-  const openModal = (alt, url) => {
-    setIsOpen(true);
-    setModalAlt(alt);
-    setModalUrl(url);
-  };
-  const closeModal = () => {
-    setIsOpen(false);
-    setModalAlt("");
-    setModalUrl("");
-  };
 
   const loadMore = () => {
     setPage(prevPage => prevPage + 1);
@@ -81,6 +58,18 @@ const App = () => {
     console.log("searchRequest fn", values);
   };
 
+  const openModal = ({ url, alt }) => {
+    console.log("Modal Opened");
+    setIsOpen(true);
+    setModalUrl(url);
+    setModalAlt(alt);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+    setModalUrl("");
+    setModalAlt("");
+  };
+
   return (
     <div className={s.appContainer}>
       <SearchBar onSubmit={searchRequest} />
@@ -94,9 +83,8 @@ const App = () => {
       )}
       {loading && <Loader />}
       <ImageModal
-        isOpen={modalIsOpen}
+        isOpen={isOpen}
         isClose={closeModal}
-        style={customStyles}
         src={modalUrl}
         alt={modalAlt}
       />

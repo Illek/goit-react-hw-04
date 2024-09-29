@@ -1,6 +1,6 @@
 import s from "./ImageCard.module.css";
 
-const ImageCard = ({ urls, slug, toOpenModal }) => {
+const ImageCard = ({ urls, slug, openModal }) => {
   return (
     <div className={s.imgWrap}>
       <img
@@ -8,7 +8,7 @@ const ImageCard = ({ urls, slug, toOpenModal }) => {
         src={urls.small}
         alt={slug}
         width="240"
-        onClick={() => toOpenModal(urls.small, slug)}
+        onClick={() => openModal(urls.regular, slug)}
       />
     </div>
   );
